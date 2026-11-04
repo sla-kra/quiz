@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz matematyczny SCORM 2.0</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <span id="questionCounter">Pytanie 1/5</span>
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <span class="score-counter" title="Poprawne / niepoprawne odpowiedzi">
+      <span class="score-ok">✔ <span id="correctCount">0</span></span>
+      <span class="score-bad">✖ <span id="wrongCount">0</span></span>
+    </span>
+    <span class="logo">🎮 Quiz</span>
+    <button id="restartBtn" class="restart-btn" type="button">Od Początku</button>
+  </div>
+
+  <div class="question-wrap" id="questionWrap">
+    <div class="question-card" id="questionCard"></div>
+  </div>
+
+  <div class="quiz-image-wrap hidden">
+    <img src="math_girl_1.webp" alt="" class="quiz-image" />
+  </div>
+
+  <div class="answers-grid" id="answersGrid"></div>
+
+  <div class="bottom-bar hidden" id="bottomBar">
+    <button id="nextBtn">Następne pytanie →</button>
+  </div>
+
+  <div id="resultScreen" class="result-screen hidden"></div>
+
+  <div id="restoreInfo" class="restore-info hidden"></div>
+
+  <div id="praiseToast" class="praise-toast hidden" role="status" aria-live="polite"></div>
+
+  <div id="restartModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="restartTitle">
+    <div class="modal-box">
+      <h2 id="restartTitle" class="neutral">Zacząć od początku?</h2>
+      <p class="modal-question">Dotychczasowe odpowiedzi i wynik zostaną usunięte.</p>
+      <div class="modal-actions">
+        <button id="restartCancelBtn" class="secondary" type="button">Anuluj</button>
+        <button id="restartConfirmBtn" type="button">Tak, od początku</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="wrongModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="wrongTitle">
+    <div class="modal-box">
+      <div class="modal-icon">✖</div>
+      <h2 id="wrongTitle">Odpowiedź błędna</h2>
+      <p class="modal-question" id="wrongQuestion"></p>
+      <p class="modal-label">Poprawna odpowiedź:</p>
+      <div class="modal-answer" id="wrongCorrectAnswer"></div>
+      <button id="wrongContinueBtn">Dalej →</button>
+    </div>
+  </div>
+
+  <script src="scorm.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

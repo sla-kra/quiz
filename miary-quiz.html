@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz – przeliczanie miar wagi i długości</title>
+  <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #46178f;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgODAwIDgwMCI+CiAgPGRlZnM+CgogICAgPCEtLSBCYXNlIHJhZGlhbCBncmFkaWVudDogbGlnaHRlciBwdXJwbGUgYXQgdG9wLWxlZnQsIGRlZXAgYXQgZWRnZXMgLS0+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iMzglIiBjeT0iMzQlIiByPSI3OCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiAgIHN0b3AtY29sb3I9IiM1YTIyYWEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiICBzdG9wLWNvbG9yPSIjNDYxNzhmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzI0MDk2MCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KCiAgICA8IS0tIFZpZ25ldHRlOiBkYXJrZW5zIGNvcm5lcnMgLS0+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InZpZyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzIlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InRyYW5zcGFyZW50Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBiMDAyNSIgc3RvcC1vcGFjaXR5PSIwLjciLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CgogICAgPCEtLSBUaWxlYWJsZSByb3RhdGVkLXNxdWFyZSBncmlkIC0tPgogICAgPHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI1OCIgaGVpZ2h0PSI1OCIKICAgICAgICAgICAgIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICAgICAgICBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUgNDAwIDQwMCkiPgogICAgICA8cmVjdCB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIGZpbGw9Im5vbmUiCiAgICAgICAgICAgIHN0cm9rZT0iIzkwNTBlMCIgc3Ryb2tlLXdpZHRoPSIwLjU1Ii8+CiAgICA8L3BhdHRlcm4+CgogICAgPCEtLSBPcmdhbmljIGZyYWN0YWwgbm9pc2UgLS0+CiAgICA8ZmlsdGVyIGlkPSJub2lzZSIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIgogICAgICAgICAgICBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgogICAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43MiAwLjcyIgogICAgICAgICAgICAgICAgICAgIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjExIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im4iLz4KICAgICAgPGZlQ29sb3JNYXRyaXggaW49Im4iIHR5cGU9Im1hdHJpeCIKICAgICAgICB2YWx1ZXM9IjAgMCAwIDAgMC4zOAogICAgICAgICAgICAgICAgMCAwIDAgMCAwLjEzCiAgICAgICAgICAgICAgICAwIDAgMCAwIDAuNjgKICAgICAgICAgICAgICAgIDAgMCAwIDAuMTggMCIgcmVzdWx0PSJjbiIvPgogICAgICA8ZmVDb21wb3NpdGUgaW49ImNuIiBpbjI9IlNvdXJjZUdyYXBoaWMiIG9wZXJhdG9yPSJpbiIvPgogICAgPC9maWx0ZXI+CgogIDwvZGVmcz4KCiAgPCEtLSDikaAgQmFzZSBncmFkaWVudCAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNiZykiLz4KCiAgPCEtLSDikaEgTGFyZ2Ugc29mdCBnbG93cyBmb3IgZGVwdGggLS0+CiAgPGcgb3BhY2l0eT0iMC4wNyIgZmlsbD0iI2NjODhmZiI+CiAgICA8Y2lyY2xlIGN4PSIxNjAiIGN5PSIxOTAiIHI9IjE0MCIvPgogICAgPGNpcmNsZSBjeD0iNjQwIiBjeT0iMTQwIiByPSIxNzAiLz4KICAgIDxjaXJjbGUgY3g9IjcyMCIgY3k9IjYyMCIgcj0iMTMwIi8+CiAgICA8Y2lyY2xlIGN4PSI5MCIgIGN5PSI2NjAiIHI9IjExMCIvPgogICAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iNDIwIiByPSIyMDAiLz4KICA8L2c+CgogIDwhLS0g4pGiIFJvdGF0ZWQgZ3JpZCAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNncmlkKSIgb3BhY2l0eT0iMC4xMyIvPgoKICA8IS0tIOKRoyBTdGFyIGZpZWxkIOKAlCB0aW55IGRvdHMgYXQgb3JnYW5pYyBwb3NpdGlvbnMgLS0+CiAgPGcgZmlsbD0iI2U0Y2NmZiI+CiAgICA8Y2lyY2xlIGN4PSI0MiIgIGN5PSIyMSIgIHI9IjEuMiIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iMTI4IiBjeT0iNjQiICByPSIwLjgiIG9wYWNpdHk9IjAuNCIvPgogICAgPGNpcmNsZSBjeD0iMjA4IiBjeT0iMTciICByPSIxLjUiIG9wYWNpdHk9IjAuNjUiLz4KICAgIDxjaXJjbGUgY3g9IjI4NyIgY3k9IjgzIiAgcj0iMS4wIiBvcGFjaXR5PSIwLjQ1Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNjgiIGN5PSIyOSIgIHI9IjAuOCIgb3BhY2l0eT0iMC4zNSIvPgogICAgPGNpcmNsZSBjeD0iNDUyIiBjeT0iNzAiICByPSIxLjMiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjUyOCIgY3k9IjE0IiAgcj0iMC45IiBvcGFjaXR5PSIwLjQ1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2MDgiIGN5PSI1MyIgIHI9IjEuNiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2OTMiIGN5PSIyNyIgIHI9IjEuMCIgb3BhY2l0eT0iMC40Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NTkiIGN5PSI4OCIgIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CgogICAgPGNpcmNsZSBjeD0iMTkiICBjeT0iMTM4IiByPSIxLjAiIG9wYWNpdHk9IjAuNCIvPgogICAgPGNpcmNsZSBjeD0iODgiICBjeT0iMTcyIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjE3OCIgY3k9IjEyOCIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyNjMiIGN5PSIxNjMiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNDMiIGN5PSIxMTYiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI0MTgiIGN5PSIxNDgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNTA4IiBjeT0iMTM4IiByPSIxLjEiIG9wYWNpdHk9IjAuNDUiLz4KICAgIDxjaXJjbGUgY3g9IjU4OCIgY3k9IjE3MyIgcj0iMS4zIiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjkiIGN5PSIxMjYiIHI9IjAuOSIgb3BhY2l0eT0iMC4zOCIvPgogICAgPGNpcmNsZSBjeD0iNzQ4IiBjeT0iMTU4IiByPSIxLjQiIG9wYWNpdHk9IjAuNSIvPgoKICAgIDxjaXJjbGUgY3g9IjUzIiAgY3k9IjI0OCIgcj0iMS4zIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjE1MyIgY3k9IjI3OCIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyMzMiIGN5PSIyMzgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMTMiIGN5PSIyNjgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgogICAgPGNpcmNsZSBjeD0iMzk2IiBjeT0iMjQzIiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNDc4IiBjeT0iMjc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxjaXJjbGUgY3g9IjU2MyIgY3k9IjI1MyIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2MzgiIGN5PSIyODgiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iNzE4IiBjeT0iMjQ2IiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzgzIiBjeT0iMjY4IiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KCiAgICA8Y2lyY2xlIGN4PSIzMyIgIGN5PSIzNTMiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iMTA4IiBjeT0iMzgzIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjE5MyIgY3k9IjM0OCIgcj0iMC44IiBvcGFjaXR5PSIwLjMyIi8+CiAgICA8Y2lyY2xlIGN4PSIyNzYiIGN5PSIzNzYiIHI9IjEuMyIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNTYiIGN5PSIzNDMiIHI9IjEuNiIgb3BhY2l0eT0iMC42MiIvPgogICAgPGNpcmNsZSBjeD0iNDM2IiBjeT0iMzgwIiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxjaXJjbGUgY3g9IjUyMCIgY3k9IjM1NiIgcj0iMS4yIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjYwMCIgY3k9IjM4OCIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSI2ODMiIGN5PSIzNTMiIHI9IjEuNCIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iNzY2IiBjeT0iMzc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KCiAgICA8Y2lyY2xlIGN4PSI2MyIgIGN5PSI0NTgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIxNDMiIGN5PSI0ODgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgogICAgPGNpcmNsZSBjeD0iMjIzIiBjeT0iNDUzIiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iMzAzIiBjeT0iNDg2IiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxjaXJjbGUgY3g9IjM4NiIgY3k9IjQ2MCIgcj0iMS4zIiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI0NjYiIGN5PSI0OTIiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI1NDYiIGN5PSI0NjgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNjI2IiBjeT0iNDkwIiByPSIxLjEiIG9wYWNpdHk9IjAuNDUiLz4KICAgIDxjaXJjbGUgY3g9IjcwOCIgY3k9IjQ2NiIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NzMiIGN5PSI0ODgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgoKICAgIDxjaXJjbGUgY3g9IjIzIiAgY3k9IjU2MyIgcj0iMS4yIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjEwMyIgY3k9IjU5MyIgcj0iMS41IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjE4NiIgY3k9IjU2NiIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyNjYiIGN5PSI1ODgiIHI9IjEuMyIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iMzUwIiBjeT0iNTcwIiByPSIxLjAiIG9wYWNpdHk9IjAuNDIiLz4KICAgIDxjaXJjbGUgY3g9IjQzMCIgY3k9IjU5NiIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI1MTMiIGN5PSI1NzgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNTkzIiBjeT0iNTk0IiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNjc2IiBjeT0iNTcyIiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzU2IiBjeT0iNTkwIiByPSIxLjAiIG9wYWNpdHk9IjAuNDIiLz4KCiAgICA8Y2lyY2xlIGN4PSI0NiIgIGN5PSI2NjYiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iMTI2IiBjeT0iNjk2IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxjaXJjbGUgY3g9IjIxMCIgY3k9IjY3MCIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSIyOTAiIGN5PSI2OTMiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNzMiIGN5PSI2NzYiIHI9IjAuOSIgb3BhY2l0eT0iMC4zOCIvPgogICAgPGNpcmNsZSBjeD0iNDU2IiBjeT0iNzAwIiByPSIxLjMiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjUzOCIgY3k9IjY4MCIgcj0iMS41IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjYxOCIgY3k9IjY5OCIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSI3MDEiIGN5PSI2NzQiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NzgiIGN5PSI2OTMiIHI9IjEuNCIgb3BhY2l0eT0iMC41NSIvPgoKICAgIDxjaXJjbGUgY3g9IjczIiAgY3k9Ijc1MyIgcj0iMS4zIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjE2MCIgY3k9Ijc3NiIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSIyNDYiIGN5PSI3NTgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMjgiIGN5PSI3ODAiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNDEzIiBjeT0iNzU2IiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNDk2IiBjeT0iNzgzIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjU3NiIgY3k9Ijc2NiIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NTgiIGN5PSI3ODQiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iNzQwIiBjeT0iNzYwIiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzkzIiBjeT0iNzc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICA8L2c+CgogIDwhLS0g4pGkIFNjYXR0ZXJlZCBzbWFsbCBkaWFtb25kIG91dGxpbmVzIC0tPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2MwODhmZiIgc3Ryb2tlLXdpZHRoPSIwLjciPgogICAgPHBvbHlnb24gcG9pbnRzPSIxOTgsMzE4IDIwNSwzMjUgMTk4LDMzMiAxOTEsMzI1IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjU3OCw0MTggNTg3LDQyNyA1NzgsNDM2IDU2OSw0MjciIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iOTgsNTQ4IDEwNiw1NTYgOTgsNTY0IDkwLDU1NiIgICBvcGFjaXR5PSIwLjQyIi8+CiAgICA8cG9seWdvbiBwb2ludHM9IjY3OCwyMjggNjg2LDIzNiA2NzgsMjQ0IDY3MCwyMzYiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMzQ4LDY0OCAzNTgsNjU4IDM0OCw2NjggMzM4LDY1OCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI0NDgsOTggIDQ1NiwxMDYgNDQ4LDExNCA0NDAsMTA2IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjczOCw0ODggNzQ4LDQ5OCA3MzgsNTA4IDcyOCw0OTgiIG9wYWNpdHk9IjAuMjgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNTgsMzk4ICA3MCw0MTAgNTgsNDIyIDQ2LDQxMCIgICBvcGFjaXR5PSIwLjMyIi8+CiAgICA8cG9seWdvbiBwb2ludHM9IjI5OCwxNzggMzA4LDE4OCAyOTgsMTk4IDI4OCwxODgiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjE4LDcxOCA2MjgsNzI4IDYxOCw3MzggNjA4LDcyOCIgb3BhY2l0eT0iMC4yOCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIxNDgsNDg4IDE1Niw0OTYgMTQ4LDUwNCAxNDAsNDk2IiBvcGFjaXR5PSIwLjM0Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjUxOCwyNzggNTI4LDI4OCA1MTgsMjk4IDUwOCwyODgiIG9wYWNpdHk9IjAuMzYiLz4KICA8L2c+CgogIDwhLS0g4pGlIE9yZ2FuaWMgbm9pc2Ugb3ZlcmxheSAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0id2hpdGUiIGZpbHRlcj0idXJsKCNub2lzZSkiLz4KCiAgPCEtLSDikaYgVmlnbmV0dGUgLS0+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9InVybCgjdmlnKSIvPgoKPC9zdmc+Cg==");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+/* ── Top bar ── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 24px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+#questionCounter {
+  font-size: 15px;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.logo {
+  font-size: 15px;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: white;
+  transition: width 0.4s ease;
+}
+
+/* ── Question card ── */
+.question-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 28px 20px 20px;
+}
+
+.question-card {
+  background: #f0eaff;
+  color: #1a0a3d;
+  border-radius: 16px;
+  padding: 28px 40px;
+  max-width: 780px;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+  /* Top highlight + deep drop shadow = 3D look */
+  box-shadow:
+    0 -3px 0 rgba(255, 255, 255, 0.6) inset,
+    0  4px 0 #7c3abf,
+    0  8px 0 #4f1f85,
+    0 14px 30px rgba(0, 0, 0, 0.5),
+    0  2px 8px  rgba(0, 0, 0, 0.25);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+}
+
+/* ── Quiz image ── */
+.quiz-image-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 14px;
+}
+
+.quiz-image {
+  width: 100%;
+  max-width: 780px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 14px;
+  box-shadow:
+    0 -2px 0 rgba(255, 255, 255, 0.12) inset,
+    0  5px 0 #340d6b,
+    0 10px 28px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+/* ── Answer grid ── */
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 0 20px 20px;
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.answer-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 20px 18px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+  min-height: 84px;
+  text-align: left;
+  /* Top highlight + coloured bottom edge + drop shadow = 3D */
+  box-shadow:
+    0 -2px 0 rgba(255, 255, 255, 0.22) inset,
+    0  5px 0 var(--btn-shadow),
+    0 10px 24px rgba(0, 0, 0, 0.45);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  top: 0;
+}
+
+.answer-btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow:
+    0 -2px 0 rgba(255, 255, 255, 0.22) inset,
+    0  7px 0 var(--btn-shadow),
+    0 14px 28px rgba(0, 0, 0, 0.5);
+}
+
+.answer-btn:disabled {
+  cursor: default;
+}
+
+.answer-btn .shape {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.answer-btn.a { background: #e21b3c; --btn-shadow: #8b0f22; }
+.answer-btn.b { background: #1368ce; --btn-shadow: #0a3e7e; }
+.answer-btn.c { background: #d89e00; --btn-shadow: #7a5900; }
+.answer-btn.d { background: #26890c; --btn-shadow: #145005; }
+
+/* Zaznaczony (przed zatwierdzeniem) */
+.answer-btn.selected {
+  outline: 4px solid white;
+  filter: brightness(1.18);
+  transform: translateY(-3px);
+  box-shadow:
+    0 -2px 0 rgba(255, 255, 255, 0.22) inset,
+    0  8px 0 var(--btn-shadow),
+    0 16px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* Feedback states */
+.answer-btn.correct {
+  outline: 4px solid white;
+  filter: brightness(1.15);
+  animation: pop 0.35s ease;
+}
+
+.answer-btn.reveal-correct {
+  outline: 4px solid white;
+  filter: brightness(1.15);
+}
+
+.answer-btn.incorrect {
+  filter: brightness(0.38);
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* ── Next button ── */
+.bottom-bar {
+  text-align: center;
+  padding: 4px 20px 28px;
+}
+
+.bottom-bar button {
+  background: white;
+  color: #46178f;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.bottom-bar button:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Result screen ── */
+.result-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #46178f;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIiB2aWV3Qm94PSIwIDAgODAwIDgwMCI+CiAgPGRlZnM+CgogICAgPCEtLSBCYXNlIHJhZGlhbCBncmFkaWVudDogbGlnaHRlciBwdXJwbGUgYXQgdG9wLWxlZnQsIGRlZXAgYXQgZWRnZXMgLS0+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iMzglIiBjeT0iMzQlIiByPSI3OCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiAgIHN0b3AtY29sb3I9IiM1YTIyYWEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiICBzdG9wLWNvbG9yPSIjNDYxNzhmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzI0MDk2MCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KCiAgICA8IS0tIFZpZ25ldHRlOiBkYXJrZW5zIGNvcm5lcnMgLS0+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InZpZyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzIlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InRyYW5zcGFyZW50Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBiMDAyNSIgc3RvcC1vcGFjaXR5PSIwLjciLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CgogICAgPCEtLSBUaWxlYWJsZSByb3RhdGVkLXNxdWFyZSBncmlkIC0tPgogICAgPHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI1OCIgaGVpZ2h0PSI1OCIKICAgICAgICAgICAgIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICAgICAgICBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUgNDAwIDQwMCkiPgogICAgICA8cmVjdCB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIGZpbGw9Im5vbmUiCiAgICAgICAgICAgIHN0cm9rZT0iIzkwNTBlMCIgc3Ryb2tlLXdpZHRoPSIwLjU1Ii8+CiAgICA8L3BhdHRlcm4+CgogICAgPCEtLSBPcmdhbmljIGZyYWN0YWwgbm9pc2UgLS0+CiAgICA8ZmlsdGVyIGlkPSJub2lzZSIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIgogICAgICAgICAgICBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPgogICAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43MiAwLjcyIgogICAgICAgICAgICAgICAgICAgIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjExIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im4iLz4KICAgICAgPGZlQ29sb3JNYXRyaXggaW49Im4iIHR5cGU9Im1hdHJpeCIKICAgICAgICB2YWx1ZXM9IjAgMCAwIDAgMC4zOAogICAgICAgICAgICAgICAgMCAwIDAgMCAwLjEzCiAgICAgICAgICAgICAgICAwIDAgMCAwIDAuNjgKICAgICAgICAgICAgICAgIDAgMCAwIDAuMTggMCIgcmVzdWx0PSJjbiIvPgogICAgICA8ZmVDb21wb3NpdGUgaW49ImNuIiBpbjI9IlNvdXJjZUdyYXBoaWMiIG9wZXJhdG9yPSJpbiIvPgogICAgPC9maWx0ZXI+CgogIDwvZGVmcz4KCiAgPCEtLSDikaAgQmFzZSBncmFkaWVudCAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNiZykiLz4KCiAgPCEtLSDikaEgTGFyZ2Ugc29mdCBnbG93cyBmb3IgZGVwdGggLS0+CiAgPGcgb3BhY2l0eT0iMC4wNyIgZmlsbD0iI2NjODhmZiI+CiAgICA8Y2lyY2xlIGN4PSIxNjAiIGN5PSIxOTAiIHI9IjE0MCIvPgogICAgPGNpcmNsZSBjeD0iNjQwIiBjeT0iMTQwIiByPSIxNzAiLz4KICAgIDxjaXJjbGUgY3g9IjcyMCIgY3k9IjYyMCIgcj0iMTMwIi8+CiAgICA8Y2lyY2xlIGN4PSI5MCIgIGN5PSI2NjAiIHI9IjExMCIvPgogICAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iNDIwIiByPSIyMDAiLz4KICA8L2c+CgogIDwhLS0g4pGiIFJvdGF0ZWQgZ3JpZCAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNncmlkKSIgb3BhY2l0eT0iMC4xMyIvPgoKICA8IS0tIOKRoyBTdGFyIGZpZWxkIOKAlCB0aW55IGRvdHMgYXQgb3JnYW5pYyBwb3NpdGlvbnMgLS0+CiAgPGcgZmlsbD0iI2U0Y2NmZiI+CiAgICA8Y2lyY2xlIGN4PSI0MiIgIGN5PSIyMSIgIHI9IjEuMiIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iMTI4IiBjeT0iNjQiICByPSIwLjgiIG9wYWNpdHk9IjAuNCIvPgogICAgPGNpcmNsZSBjeD0iMjA4IiBjeT0iMTciICByPSIxLjUiIG9wYWNpdHk9IjAuNjUiLz4KICAgIDxjaXJjbGUgY3g9IjI4NyIgY3k9IjgzIiAgcj0iMS4wIiBvcGFjaXR5PSIwLjQ1Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNjgiIGN5PSIyOSIgIHI9IjAuOCIgb3BhY2l0eT0iMC4zNSIvPgogICAgPGNpcmNsZSBjeD0iNDUyIiBjeT0iNzAiICByPSIxLjMiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjUyOCIgY3k9IjE0IiAgcj0iMC45IiBvcGFjaXR5PSIwLjQ1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2MDgiIGN5PSI1MyIgIHI9IjEuNiIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI2OTMiIGN5PSIyNyIgIHI9IjEuMCIgb3BhY2l0eT0iMC40Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NTkiIGN5PSI4OCIgIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CgogICAgPGNpcmNsZSBjeD0iMTkiICBjeT0iMTM4IiByPSIxLjAiIG9wYWNpdHk9IjAuNCIvPgogICAgPGNpcmNsZSBjeD0iODgiICBjeT0iMTcyIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjE3OCIgY3k9IjEyOCIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyNjMiIGN5PSIxNjMiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNDMiIGN5PSIxMTYiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI0MTgiIGN5PSIxNDgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNTA4IiBjeT0iMTM4IiByPSIxLjEiIG9wYWNpdHk9IjAuNDUiLz4KICAgIDxjaXJjbGUgY3g9IjU4OCIgY3k9IjE3MyIgcj0iMS4zIiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NjkiIGN5PSIxMjYiIHI9IjAuOSIgb3BhY2l0eT0iMC4zOCIvPgogICAgPGNpcmNsZSBjeD0iNzQ4IiBjeT0iMTU4IiByPSIxLjQiIG9wYWNpdHk9IjAuNSIvPgoKICAgIDxjaXJjbGUgY3g9IjUzIiAgY3k9IjI0OCIgcj0iMS4zIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjE1MyIgY3k9IjI3OCIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyMzMiIGN5PSIyMzgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMTMiIGN5PSIyNjgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgogICAgPGNpcmNsZSBjeD0iMzk2IiBjeT0iMjQzIiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNDc4IiBjeT0iMjc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxjaXJjbGUgY3g9IjU2MyIgY3k9IjI1MyIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI2MzgiIGN5PSIyODgiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iNzE4IiBjeT0iMjQ2IiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzgzIiBjeT0iMjY4IiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KCiAgICA8Y2lyY2xlIGN4PSIzMyIgIGN5PSIzNTMiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iMTA4IiBjeT0iMzgzIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjE5MyIgY3k9IjM0OCIgcj0iMC44IiBvcGFjaXR5PSIwLjMyIi8+CiAgICA8Y2lyY2xlIGN4PSIyNzYiIGN5PSIzNzYiIHI9IjEuMyIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNTYiIGN5PSIzNDMiIHI9IjEuNiIgb3BhY2l0eT0iMC42MiIvPgogICAgPGNpcmNsZSBjeD0iNDM2IiBjeT0iMzgwIiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxjaXJjbGUgY3g9IjUyMCIgY3k9IjM1NiIgcj0iMS4yIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjYwMCIgY3k9IjM4OCIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSI2ODMiIGN5PSIzNTMiIHI9IjEuNCIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iNzY2IiBjeT0iMzc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KCiAgICA8Y2lyY2xlIGN4PSI2MyIgIGN5PSI0NTgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIxNDMiIGN5PSI0ODgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgogICAgPGNpcmNsZSBjeD0iMjIzIiBjeT0iNDUzIiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iMzAzIiBjeT0iNDg2IiByPSIwLjkiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxjaXJjbGUgY3g9IjM4NiIgY3k9IjQ2MCIgcj0iMS4zIiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI0NjYiIGN5PSI0OTIiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSI1NDYiIGN5PSI0NjgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNjI2IiBjeT0iNDkwIiByPSIxLjEiIG9wYWNpdHk9IjAuNDUiLz4KICAgIDxjaXJjbGUgY3g9IjcwOCIgY3k9IjQ2NiIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NzMiIGN5PSI0ODgiIHI9IjEuMCIgb3BhY2l0eT0iMC40MiIvPgoKICAgIDxjaXJjbGUgY3g9IjIzIiAgY3k9IjU2MyIgcj0iMS4yIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjEwMyIgY3k9IjU5MyIgcj0iMS41IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjE4NiIgY3k9IjU2NiIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSIyNjYiIGN5PSI1ODgiIHI9IjEuMyIgb3BhY2l0eT0iMC41NSIvPgogICAgPGNpcmNsZSBjeD0iMzUwIiBjeT0iNTcwIiByPSIxLjAiIG9wYWNpdHk9IjAuNDIiLz4KICAgIDxjaXJjbGUgY3g9IjQzMCIgY3k9IjU5NiIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSI1MTMiIGN5PSI1NzgiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNTkzIiBjeT0iNTk0IiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNjc2IiBjeT0iNTcyIiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzU2IiBjeT0iNTkwIiByPSIxLjAiIG9wYWNpdHk9IjAuNDIiLz4KCiAgICA8Y2lyY2xlIGN4PSI0NiIgIGN5PSI2NjYiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iMTI2IiBjeT0iNjk2IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxjaXJjbGUgY3g9IjIxMCIgY3k9IjY3MCIgcj0iMS40IiBvcGFjaXR5PSIwLjU1Ii8+CiAgICA8Y2lyY2xlIGN4PSIyOTAiIGN5PSI2OTMiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNzMiIGN5PSI2NzYiIHI9IjAuOSIgb3BhY2l0eT0iMC4zOCIvPgogICAgPGNpcmNsZSBjeD0iNDU2IiBjeT0iNzAwIiByPSIxLjMiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjUzOCIgY3k9IjY4MCIgcj0iMS41IiBvcGFjaXR5PSIwLjYiLz4KICAgIDxjaXJjbGUgY3g9IjYxOCIgY3k9IjY5OCIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSI3MDEiIGN5PSI2NzQiIHI9IjEuMiIgb3BhY2l0eT0iMC41Ii8+CiAgICA8Y2lyY2xlIGN4PSI3NzgiIGN5PSI2OTMiIHI9IjEuNCIgb3BhY2l0eT0iMC41NSIvPgoKICAgIDxjaXJjbGUgY3g9IjczIiAgY3k9Ijc1MyIgcj0iMS4zIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjE2MCIgY3k9Ijc3NiIgcj0iMS4wIiBvcGFjaXR5PSIwLjQyIi8+CiAgICA8Y2lyY2xlIGN4PSIyNDYiIGN5PSI3NTgiIHI9IjEuNSIgb3BhY2l0eT0iMC42Ii8+CiAgICA8Y2lyY2xlIGN4PSIzMjgiIGN5PSI3ODAiIHI9IjAuOCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPGNpcmNsZSBjeD0iNDEzIiBjeT0iNzU2IiByPSIxLjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGNpcmNsZSBjeD0iNDk2IiBjeT0iNzgzIiByPSIxLjQiIG9wYWNpdHk9IjAuNTUiLz4KICAgIDxjaXJjbGUgY3g9IjU3NiIgY3k9Ijc2NiIgcj0iMC45IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NTgiIGN5PSI3ODQiIHI9IjEuMSIgb3BhY2l0eT0iMC40NSIvPgogICAgPGNpcmNsZSBjeD0iNzQwIiBjeT0iNzYwIiByPSIxLjUiIG9wYWNpdHk9IjAuNiIvPgogICAgPGNpcmNsZSBjeD0iNzkzIiBjeT0iNzc4IiByPSIwLjgiIG9wYWNpdHk9IjAuMzIiLz4KICA8L2c+CgogIDwhLS0g4pGkIFNjYXR0ZXJlZCBzbWFsbCBkaWFtb25kIG91dGxpbmVzIC0tPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2MwODhmZiIgc3Ryb2tlLXdpZHRoPSIwLjciPgogICAgPHBvbHlnb24gcG9pbnRzPSIxOTgsMzE4IDIwNSwzMjUgMTk4LDMzMiAxOTEsMzI1IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjU3OCw0MTggNTg3LDQyNyA1NzgsNDM2IDU2OSw0MjciIG9wYWNpdHk9IjAuMzIiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iOTgsNTQ4IDEwNiw1NTYgOTgsNTY0IDkwLDU1NiIgICBvcGFjaXR5PSIwLjQyIi8+CiAgICA8cG9seWdvbiBwb2ludHM9IjY3OCwyMjggNjg2LDIzNiA2NzgsMjQ0IDY3MCwyMzYiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMzQ4LDY0OCAzNTgsNjU4IDM0OCw2NjggMzM4LDY1OCIgb3BhY2l0eT0iMC4zMiIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI0NDgsOTggIDQ1NiwxMDYgNDQ4LDExNCA0NDAsMTA2IiBvcGFjaXR5PSIwLjM4Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjczOCw0ODggNzQ4LDQ5OCA3MzgsNTA4IDcyOCw0OTgiIG9wYWNpdHk9IjAuMjgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNTgsMzk4ICA3MCw0MTAgNTgsNDIyIDQ2LDQxMCIgICBvcGFjaXR5PSIwLjMyIi8+CiAgICA8cG9seWdvbiBwb2ludHM9IjI5OCwxNzggMzA4LDE4OCAyOTgsMTk4IDI4OCwxODgiIG9wYWNpdHk9IjAuMzgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjE4LDcxOCA2MjgsNzI4IDYxOCw3MzggNjA4LDcyOCIgb3BhY2l0eT0iMC4yOCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIxNDgsNDg4IDE1Niw0OTYgMTQ4LDUwNCAxNDAsNDk2IiBvcGFjaXR5PSIwLjM0Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjUxOCwyNzggNTI4LDI4OCA1MTgsMjk4IDUwOCwyODgiIG9wYWNpdHk9IjAuMzYiLz4KICA8L2c+CgogIDwhLS0g4pGlIE9yZ2FuaWMgbm9pc2Ugb3ZlcmxheSAtLT4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0id2hpdGUiIGZpbHRlcj0idXJsKCNub2lzZSkiLz4KCiAgPCEtLSDikaYgVmlnbmV0dGUgLS0+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9InVybCgjdmlnKSIvPgoKPC9zdmc+Cg==");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+}
+
+.result-screen .trophy {
+  font-size: 88px;
+  margin-bottom: 16px;
+  animation: pop 0.5s ease;
+}
+
+.result-screen h2 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.result-screen .score-big {
+  font-size: 72px;
+  font-weight: bold;
+  margin: 12px 0;
+  line-height: 1;
+}
+
+.result-screen p {
+  font-size: 20px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 32px;
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.status-badge.passed { background: #26890c; }
+.status-badge.failed { background: #e21b3c; }
+
+/* ── Restore toast ── */
+.restore-info {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ════════════════════════════════════
+   MARIO SUCCESS  (score = 100%)
+════════════════════════════════════ */
+.result-screen.mario-success {
+  background-color: #1b1b8e;
+  overflow: hidden;
+}
+
+.level-clear-text {
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  font-size: 30px;
+  color: #FFD700;
+  letter-spacing: 4px;
+  text-shadow: 3px 3px 0 #8B4513;
+  animation: level-bounce 0.45s ease-in-out infinite alternate;
+  margin-bottom: 4px;
+  z-index: 1;
+}
+
+@keyframes level-bounce {
+  from { transform: translateY(0) scale(1); }
+  to   { transform: translateY(-12px) scale(1.07); }
+}
+
+.mario-hero {
+  font-size: 80px;
+  display: block;
+  animation: mario-jump-anim 0.42s ease-in-out infinite alternate;
+  z-index: 1;
+  margin: 4px 0;
+}
+
+@keyframes mario-jump-anim {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-22px); }
+}
+
+.score-big.golden {
+  color: #FFD700;
+  text-shadow: 3px 3px 0 #8B4513;
+  font-family: 'Courier New', monospace;
+  z-index: 1;
+}
+
+/* Coin flying up */
+.coin-particle {
+  position: absolute;
+  font-size: 28px;
+  pointer-events: none;
+  animation: coin-fly linear forwards;
+}
+
+@keyframes coin-fly {
+  0%   { transform: translateY(0)      rotate(0deg);   opacity: 1; }
+  65%  { opacity: 1; }
+  100% { transform: translateY(-480px) rotate(540deg); opacity: 0; }
+}
+
+/* Firework dots */
+.firework-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.75s ease-out, opacity 0.75s ease-out;
+}
+
+/* ════════════════════════════════════
+   MARIO FAILURE  (score ≤ 20%)
+════════════════════════════════════ */
+.result-screen.mario-failure {
+  background-color: #000;
+  animation: screen-to-black 0.7s ease forwards;
+}
+
+@keyframes screen-to-black {
+  from { background-color: #46178f; }
+  to   { background-color: #000; }
+}
+
+.mario-death-char {
+  font-size: 72px;
+  display: block;
+  animation: mario-die 2.6s ease forwards;
+}
+
+@keyframes mario-die {
+  0%   { transform: translateY(0)     rotate(0deg);   opacity: 1; }
+  22%  { transform: translateY(-90px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(520px) rotate(180deg); opacity: 0.05; }
+}
+
+.game-over-text {
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  font-size: 56px;
+  color: #ff1a1a;
+  letter-spacing: 5px;
+  text-shadow: 4px 4px 0 #800000;
+  animation: game-over-appear 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.9s both;
+}
+
+@keyframes game-over-appear {
+  from { opacity: 0; transform: scale(0.2); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.game-over-sub {
+  animation: game-over-appear 0.6s ease 2.4s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <span id="questionCounter">Pytanie 1/5</span>
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <span class="logo">🎮 Quiz</span>
+  </div>
+
+  <div class="question-wrap" id="questionWrap">
+    <div class="question-card" id="questionCard"></div>
+  </div>
+
+  <div class="quiz-image-wrap hidden">
+    <img alt="" class="quiz-image" />
+  </div>
+
+  <div class="answers-grid" id="answersGrid"></div>
+
+  <div class="bottom-bar hidden" id="bottomBar">
+    <button id="nextBtn">Następne pytanie →</button>
+  </div>
+
+  <div id="resultScreen" class="result-screen hidden"></div>
+
+  <div id="restoreInfo" class="restore-info hidden"></div>
+
+  <script>
+window.QUIZ_DATA = {
+  "title": "Quiz – przeliczanie miar wagi i długości",
+  "passScore": 80,
+  "questions": [
+    { "id":  1, "question": "3 kg = ? g",                 "options": ["30 g", "300 g", "3000 g", "30 000 g"],          "correct": 2 },
+    { "id":  2, "question": "5 dag = ? g",                "options": ["5 g", "50 g", "500 g", "0,5 g"],                "correct": 1 },
+    { "id":  3, "question": "2 t = ? kg",                 "options": ["20 kg", "200 kg", "2000 kg", "20 000 kg"],      "correct": 2 },
+    { "id":  4, "question": "400 g = ? dag",              "options": ["4 dag", "40 dag", "400 dag", "0,4 dag"],        "correct": 1 },
+    { "id":  5, "question": "7 kg = ? dag",               "options": ["7 dag", "70 dag", "700 dag", "7000 dag"],       "correct": 2 },
+    { "id":  6, "question": "6000 kg = ? t",              "options": ["60 t", "600 t", "0,6 t", "6 t"],                "correct": 3 },
+    { "id":  7, "question": "2500 g = ? kg",              "options": ["25 kg", "0,25 kg", "250 kg", "2,5 kg"],         "correct": 3 },
+    { "id":  8, "question": "1 kg 50 g = ? g",            "options": ["1500 g", "1050 g", "150 g", "10 050 g"],        "correct": 1 },
+    { "id":  9, "question": "30 dag = ? g",               "options": ["300 g", "3 g", "30 g", "3000 g"],               "correct": 0 },
+    { "id": 10, "question": "0,5 t = ? kg",               "options": ["5 kg", "50 kg", "500 kg", "5000 kg"],           "correct": 2 },
+    { "id": 11, "question": "Która masa jest największa?", "options": ["1500 g", "2 kg", "120 dag", "1 kg 600 g"],      "correct": 1 },
+    { "id": 12, "question": "3 kg 20 dag = ? dag",        "options": ["3020 dag", "32 dag", "302 dag", "320 dag"],     "correct": 3 },
+    { "id": 13, "question": "4500 kg = ?",                "options": ["45 t", "4 t 50 kg", "4 t 500 kg", "450 t"],     "correct": 2 },
+    { "id": 14, "question": "250 g = ? kg",               "options": ["2,5 kg", "0,25 kg", "0,025 kg", "25 kg"],       "correct": 1 },
+    { "id": 15, "question": "8 dag + 20 g = ? g",         "options": ["28 g", "82 g", "280 g", "100 g"],               "correct": 3 },
+
+    { "id": 16, "question": "4 m = ? cm",                 "options": ["40 cm", "400 cm", "4000 cm", "44 cm"],          "correct": 1 },
+    { "id": 17, "question": "3 km = ? m",                 "options": ["30 m", "300 m", "3000 m", "30 000 m"],          "correct": 2 },
+    { "id": 18, "question": "70 mm = ? cm",               "options": ["7 cm", "70 cm", "0,7 cm", "700 cm"],            "correct": 0 },
+    { "id": 19, "question": "5 dm = ? cm",                "options": ["5 cm", "500 cm", "0,5 cm", "50 cm"],            "correct": 3 },
+    { "id": 20, "question": "2 m = ? mm",                 "options": ["20 mm", "200 mm", "2000 mm", "20 000 mm"],      "correct": 2 },
+    { "id": 21, "question": "600 cm = ? m",               "options": ["60 m", "6 m", "0,6 m", "600 m"],                "correct": 1 },
+    { "id": 22, "question": "8000 m = ? km",              "options": ["80 km", "800 km", "0,8 km", "8 km"],            "correct": 3 },
+    { "id": 23, "question": "35 cm = ? mm",               "options": ["3,5 mm", "350 mm", "35 mm", "3500 mm"],         "correct": 1 },
+    { "id": 24, "question": "2 m 5 cm = ? cm",            "options": ["25 cm", "250 cm", "205 cm", "2005 cm"],         "correct": 2 },
+    { "id": 25, "question": "1500 m = ? km",              "options": ["15 km", "1,5 km", "0,15 km", "150 km"],         "correct": 1 },
+    { "id": 26, "question": "9 dm = ? m",                 "options": ["0,9 m", "9 m", "90 m", "0,09 m"],               "correct": 0 },
+    { "id": 27, "question": "Która długość jest największa?", "options": ["1 m 5 cm", "120 cm", "11 dm", "1150 mm"],   "correct": 1 },
+    { "id": 28, "question": "3 km 250 m = ? m",           "options": ["3025 m", "325 m", "3250 m", "32 500 m"],        "correct": 2 },
+    { "id": 29, "question": "450 mm = ? dm",              "options": ["45 dm", "0,45 dm", "450 dm", "4,5 dm"],         "correct": 3 },
+    { "id": 30, "question": "1 km = ? cm",                "options": ["1000 cm", "10 000 cm", "100 000 cm", "1 000 000 cm"], "correct": 2 }
+  ]
+};
+
+</script>
+  <script>
+const SCORM = {
+  api: null,
+  initialized: false,
+
+  findAPI(win) {
+    let tries = 0;
+    while ((win.API == null) && (win.parent != null) && (win.parent != win)) {
+      tries++;
+      if (tries > 20) break;
+      win = win.parent;
+    }
+    return win.API;
+  },
+
+  getAPI() {
+    if (this.api) return this.api;
+    this.api = this.findAPI(window);
+
+    if (!this.api && window.opener) {
+      this.api = this.findAPI(window.opener);
+    }
+
+    return this.api;
+  },
+
+  init() {
+    const api = this.getAPI();
+    if (!api) {
+      console.warn("SCORM API not found. Running in standalone mode.");
+      return false;
+    }
+
+    const result = api.LMSInitialize("");
+    this.initialized = (result === "true");
+    return this.initialized;
+  },
+
+  finish() {
+    if (!this.initialized) return false;
+    const result = this.api.LMSFinish("");
+    return result === "true";
+  },
+
+  getValue(element) {
+    if (!this.initialized) return "";
+    return this.api.LMSGetValue(element);
+  },
+
+  setValue(element, value) {
+    if (!this.initialized) return false;
+    const result = this.api.LMSSetValue(element, value);
+    return result === "true";
+  },
+
+  save() {
+    if (!this.initialized) return false;
+    const result = this.api.LMSCommit("");
+    return result === "true";
+  },
+
+  getLastError() {
+    if (!this.api) return "0";
+    return this.api.LMSGetLastError();
+  },
+
+  getErrorString(errorCode) {
+    if (!this.api) return "";
+    return this.api.LMSGetErrorString(errorCode);
+  },
+
+  getDiagnostic(errorCode) {
+    if (!this.api) return "";
+    return this.api.LMSGetDiagnostic(errorCode);
+  }
+};
+
+</script>
+  <script>
+let QUIZ = [];
+let PASS_SCORE = 80;
+
+function loadQuizData() {
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("quiz") || "questions.js";
+
+  function applyData(data) {
+    if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
+      throw new Error("Plik nie zawiera poprawnych pytań: " + file);
+    }
+    QUIZ = data.questions;
+    PASS_SCORE = data.passScore ?? 80;
+    if (data.title) document.title = data.title;
+    applyQuizImage(data.images);
+  }
+
+  // Wersja samodzielna: dane są już osadzone w pliku
+  if (window.QUIZ_DATA) {
+    try { applyData(window.QUIZ_DATA); return Promise.resolve(); }
+    catch (e) { return Promise.reject(e); }
+  }
+
+  if (file.endsWith(".json")) {
+    // JSON — wymaga http:// (nie działa z file://)
+    return fetch(file)
+      .then(r => { if (!r.ok) throw new Error("Nie można załadować: " + file); return r.json(); })
+      .then(applyData);
+  }
+
+  // JS — wstrzyknięcie <script>, działa też z file://
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = file;
+    script.onload = () => {
+      try { applyData(window.QUIZ_DATA); resolve(); }
+      catch (e) { reject(e); }
+    };
+    script.onerror = () => reject(new Error("Nie można załadować pliku: " + file));
+    document.head.appendChild(script);
+  });
+}
+const SHAPES = ["▲", "◆", "●", "■"];
+const LABELS = ["a", "b", "c", "d"];
+
+let pendingAnswer = null; // wybrana ale jeszcze niezatwierdzona odpowiedź
+
+let quizImages = [];
+let lastImage  = null;
+
+function applyQuizImage(images) {
+  const wrap = document.querySelector(".quiz-image-wrap");
+  if (Array.isArray(images) && images.length > 0) {
+    quizImages = images;
+    wrap.classList.remove("hidden");
+  } else {
+    quizImages = [];
+    wrap.classList.add("hidden");
+  }
+}
+
+function randomizeImage() {
+  if (quizImages.length === 0) return;
+  const pool = quizImages.length > 1 ? quizImages.filter(i => i !== lastImage) : quizImages;
+  const picked = pool[Math.floor(Math.random() * pool.length)];
+  lastImage = picked;
+  document.querySelector(".quiz-image").src = picked;
+}
+
+function defaultState() {
+  return {
+    answers: {},
+    shuffles: {},   // question id → shuffled original-index array
+    currentIndex: 0,
+    submitted: false,
+    score: null,
+    passed: null,
+    timestamp: null
+  };
+}
+
+// Returns array where shuffle[displayPos] = originalIndex
+function getShuffledOptions(q) {
+  if (!state.shuffles[q.id]) {
+    const indices = q.options.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    state.shuffles[q.id] = indices;
+  }
+  return state.shuffles[q.id];
+}
+
+let state = defaultState();
+
+function safeParseSuspendData(raw) {
+  if (!raw || raw === "null" || raw === "undefined") return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === "object") return parsed;
+  } catch (e) {
+    console.warn("Cannot parse suspend_data:", e);
+  }
+  return null;
+}
+
+function loadStateFromSCORM() {
+  const raw = SCORM.getValue("cmi.suspend_data");
+  const saved = safeParseSuspendData(raw);
+
+  if (saved) {
+    state = { ...defaultState(), ...saved, answers: saved.answers || {} };
+
+    if (!state.submitted) {
+      // Find first unanswered question to resume from
+      let firstUnanswered = QUIZ.length;
+      for (let i = 0; i < QUIZ.length; i++) {
+        if (state.answers[QUIZ[i].id] === undefined) {
+          firstUnanswered = i;
+          break;
+        }
+      }
+      state.currentIndex = firstUnanswered;
+    }
+
+    showRestoreInfo("Przywrócono zapisany postęp.");
+  }
+
+  const lessonStatus = SCORM.getValue("cmi.core.lesson_status");
+  if (!lessonStatus || lessonStatus === "not attempted") {
+    SCORM.setValue("cmi.core.lesson_status", "incomplete");
+    SCORM.save();
+  }
+}
+
+function saveStateToSCORM() {
+  state.timestamp = new Date().toISOString();
+  SCORM.setValue("cmi.suspend_data", JSON.stringify(state));
+  SCORM.setValue("cmi.core.lesson_location", String(state.currentIndex));
+  SCORM.save();
+}
+
+function updateTopBar() {
+  const total = QUIZ.length;
+  const current = Math.min(state.currentIndex + 1, total);
+  document.getElementById("questionCounter").textContent =
+    "Pytanie " + current + "/" + total;
+  document.getElementById("progressFill").style.width =
+    Math.round((state.currentIndex / total) * 100) + "%";
+}
+
+function renderCurrentQuestion() {
+  randomizeImage();
+  const q = QUIZ[state.currentIndex];
+  const alreadyAnswered = state.answers[q.id] !== undefined;
+
+  document.getElementById("questionCard").textContent = q.question;
+  updateTopBar();
+
+  const grid = document.getElementById("answersGrid");
+  grid.innerHTML = "";
+
+  const shuffle = getShuffledOptions(q);   // shuffle[displayPos] = originalIndex
+
+  shuffle.forEach((origIdx, displayPos) => {
+    const btn = document.createElement("button");
+    btn.className = "answer-btn " + LABELS[displayPos];
+
+    const shape = document.createElement("span");
+    shape.className = "shape";
+    shape.textContent = SHAPES[displayPos];
+
+    const text = document.createElement("span");
+    text.textContent = q.options[origIdx];
+
+    btn.appendChild(shape);
+    btn.appendChild(text);
+
+    if (alreadyAnswered) {
+      btn.disabled = true;
+      if (origIdx === q.correct) {
+        btn.classList.add("reveal-correct");
+      } else if (state.answers[q.id] === origIdx) {
+        btn.classList.add("incorrect");
+      }
+    } else {
+      btn.addEventListener("click", () => onAnswerClick(origIdx));
+    }
+
+    grid.appendChild(btn);
+  });
+
+  const bottomBar = document.getElementById("bottomBar");
+  if (alreadyAnswered) {
+    bottomBar.classList.remove("hidden");
+    updateNextButton();
+  } else {
+    bottomBar.classList.add("hidden");
+  }
+}
+
+function onAnswerClick(origIdx) {
+  pendingAnswer = origIdx;
+
+  const q = QUIZ[state.currentIndex];
+  const shuffle = state.shuffles[q.id];
+  document.querySelectorAll(".answer-btn").forEach((btn, displayPos) => {
+    btn.classList.toggle("selected", shuffle[displayPos] === origIdx);
+  });
+
+  document.getElementById("bottomBar").classList.remove("hidden");
+  updateNextButton();
+}
+
+function updateNextButton() {
+  const isLast = state.currentIndex === QUIZ.length - 1;
+  document.getElementById("nextBtn").textContent =
+    isLast ? "Zobacz wynik →" : "Następne pytanie →";
+}
+
+function onNext() {
+  if (pendingAnswer !== null) {
+    // Zatwierdź odpowiedź i pokaż feedback
+    const q = QUIZ[state.currentIndex];
+    state.answers[q.id] = pendingAnswer;
+    saveStateToSCORM();
+
+    const selected = pendingAnswer;
+    pendingAnswer = null;
+
+    const shuffle = state.shuffles[q.id];
+    document.querySelectorAll(".answer-btn").forEach((btn, displayPos) => {
+      const origIdx = shuffle[displayPos];
+      btn.disabled = true;
+      btn.classList.remove("selected");
+      if (origIdx === q.correct) {
+        btn.classList.add(selected === origIdx ? "correct" : "reveal-correct");
+      } else if (origIdx === selected) {
+        btn.classList.add("incorrect");
+      }
+    });
+
+    document.getElementById("bottomBar").classList.add("hidden");
+    setTimeout(advance, 1200);
+    return;
+  }
+
+  advance();
+}
+
+function advance() {
+  state.currentIndex++;
+  if (state.currentIndex >= QUIZ.length) {
+    calculateResult();
+  } else {
+    renderCurrentQuestion();
+  }
+}
+
+function calculateResult() {
+  let correctCount = 0;
+  QUIZ.forEach(q => {
+    if (state.answers[q.id] === q.correct) correctCount++;
+  });
+
+  const score = Math.round((correctCount / QUIZ.length) * 100);
+  const passed = score >= PASS_SCORE;
+
+  state.submitted = true;
+  state.score = score;
+  state.passed = passed;
+
+  SCORM.setValue("cmi.core.score.min", "0");
+  SCORM.setValue("cmi.core.score.max", "100");
+  SCORM.setValue("cmi.core.score.raw", String(score));
+  SCORM.setValue("cmi.core.lesson_status", passed ? "passed" : "failed");
+  saveStateToSCORM();
+
+  showFinalResult();
+}
+
+function showFinalResult() {
+  const correctCount = QUIZ.filter(q => state.answers[q.id] === q.correct).length;
+
+  document.getElementById("questionWrap").classList.add("hidden");
+  document.getElementById("answersGrid").classList.add("hidden");
+  document.getElementById("bottomBar").classList.add("hidden");
+  document.getElementById("questionCounter").textContent = "Quiz zakończony";
+  document.getElementById("progressFill").style.width = "100%";
+
+  const screen = document.getElementById("resultScreen");
+  screen.classList.remove("hidden");
+
+  if (state.score === 100) {
+    showMarioSuccess(screen, correctCount);
+  } else if (state.score <= 20) {
+    showMarioFailure(screen, correctCount);
+  } else {
+    screen.innerHTML = `
+      <div class="trophy">${state.passed ? "🏆" : "📚"}</div>
+      <h2>${state.passed ? "Brawo!" : "Nie tym razem"}</h2>
+      <div class="score-big">${state.score}%</div>
+      <p>Poprawne odpowiedzi: ${correctCount} / ${QUIZ.length}</p>
+      <span class="status-badge ${state.passed ? "passed" : "failed"}">
+        ${state.passed ? "ZALICZONO" : "NIEZALICZONE"}
+      </span>
+    `;
+  }
+}
+
+function showMarioSuccess(screen, correctCount) {
+  screen.classList.add("mario-success");
+  screen.innerHTML = `
+    <div class="level-clear-text">✨ LEVEL CLEAR! ✨</div>
+    <div class="mario-hero">🍄</div>
+    <div class="score-big golden">100%</div>
+    <p>Wszystkie odpowiedzi poprawne! ${correctCount}/${QUIZ.length}</p>
+    <span class="status-badge passed" style="margin-top:20px">ZALICZONO</span>
+  `;
+
+  // Coins flying up continuously
+  let coinWave = 0;
+  const coinInterval = setInterval(() => {
+    for (let i = 0; i < 4; i++) {
+      const coin = document.createElement("div");
+      coin.className = "coin-particle";
+      coin.textContent = "🪙";
+      coin.style.left = (4 + Math.random() * 92) + "%";
+      coin.style.bottom = "-10px";
+      coin.style.animationDuration = (0.8 + Math.random() * 0.65) + "s";
+      coin.style.animationDelay = (Math.random() * 0.15) + "s";
+      screen.appendChild(coin);
+      setTimeout(() => coin.remove(), 1700);
+    }
+    if (++coinWave > 24) clearInterval(coinInterval);
+  }, 160);
+
+  // Fireworks bursting at random positions
+  const fwColors = ["#FFD700", "#FF69B4", "#00FFFF", "#FF4500", "#7FFF00", "#FF1493", "#fff"];
+  let fwWave = 0;
+  const fwInterval = setInterval(() => {
+    const cx = 10 + Math.random() * 80;
+    const cy = 8  + Math.random() * 65;
+    for (let i = 0; i < 14; i++) {
+      const dot = document.createElement("div");
+      dot.className = "firework-dot";
+      dot.style.left = cx + "%";
+      dot.style.top  = cy + "%";
+      dot.style.background = fwColors[Math.floor(Math.random() * fwColors.length)];
+      screen.appendChild(dot);
+      const angle = (i / 14) * 2 * Math.PI;
+      const dist  = 55 + Math.random() * 65;
+      const dx = Math.cos(angle) * dist;
+      const dy = Math.sin(angle) * dist;
+      // double rAF so transition fires after element is in DOM
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        dot.style.transform = `translate(${dx}px, ${dy}px) scale(0)`;
+        dot.style.opacity   = "0";
+      }));
+      setTimeout(() => dot.remove(), 850);
+    }
+    if (++fwWave > 14) clearInterval(fwInterval);
+  }, 380);
+}
+
+function showMarioFailure(screen, correctCount) {
+  screen.classList.add("mario-failure");
+  screen.innerHTML = `
+    <div class="mario-death-char">💀</div>
+    <div class="game-over-text">GAME OVER</div>
+    <div class="game-over-sub">
+      <div class="score-big" style="color:#ff4444;margin-top:16px">${state.score}%</div>
+      <p style="margin-top:10px">Poprawne odpowiedzi: ${correctCount} / ${QUIZ.length}</p>
+      <span class="status-badge failed" style="margin-top:20px">NIEZALICZONE</span>
+    </div>
+  `;
+}
+
+function showRestoreInfo(message) {
+  const el = document.getElementById("restoreInfo");
+  el.textContent = message;
+  el.classList.remove("hidden");
+  setTimeout(() => el.classList.add("hidden"), 3000);
+}
+
+window.onload = async function () {
+  SCORM.init();
+
+  try {
+    await loadQuizData();
+  } catch (e) {
+    document.body.innerHTML =
+      `<div style="color:white;font-family:sans-serif;padding:40px;text-align:center">
+         <h2>Błąd ładowania quizu</h2>
+         <p>${e.message}</p>
+         <p style="opacity:.6;font-size:14px">Sprawdź parametr <code>?quiz=</code> w adresie URL.</p>
+       </div>`;
+    return;
+  }
+
+  loadStateFromSCORM();
+
+  if (state.submitted) {
+    showFinalResult();
+  } else if (state.currentIndex >= QUIZ.length) {
+    calculateResult();
+  } else {
+    renderCurrentQuestion();
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", onNext);
+};
+
+window.onbeforeunload = function () {
+  saveStateToSCORM();
+  SCORM.finish();
+};
+
+</script>
+</body>
+</html>

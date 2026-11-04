@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+
+    <!-- Base radial gradient: lighter purple at top-left, deep at edges -->
+    <radialGradient id="bg" cx="38%" cy="34%" r="78%">
+      <stop offset="0%"   stop-color="#5a22aa"/>
+      <stop offset="55%"  stop-color="#46178f"/>
+      <stop offset="100%" stop-color="#240960"/>
+    </radialGradient>
+
+    <!-- Vignette: darkens corners -->
+    <radialGradient id="vig" cx="50%" cy="50%" r="72%">
+      <stop offset="25%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#0b0025" stop-opacity="0.7"/>
+    </radialGradient>
+
+    <!-- Tileable rotated-square grid -->
+    <pattern id="grid" width="58" height="58"
+             patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45 400 400)">
+      <rect width="58" height="58" fill="none"
+            stroke="#9050e0" stroke-width="0.55"/>
+    </pattern>
+
+    <!-- Organic fractal noise -->
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%"
+            color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72 0.72"
+                    numOctaves="4" seed="11" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0 0 0 0 0.38
+                0 0 0 0 0.13
+                0 0 0 0 0.68
+                0 0 0 0.18 0" result="cn"/>
+      <feComposite in="cn" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+  </defs>
+
+  <!-- ① Base gradient -->
+  <rect width="800" height="800" fill="url(#bg)"/>
+
+  <!-- ② Large soft glows for depth -->
+  <g opacity="0.07" fill="#cc88ff">
+    <circle cx="160" cy="190" r="140"/>
+    <circle cx="640" cy="140" r="170"/>
+    <circle cx="720" cy="620" r="130"/>
+    <circle cx="90"  cy="660" r="110"/>
+    <circle cx="400" cy="420" r="200"/>
+  </g>
+
+  <!-- ③ Rotated grid -->
+  <rect width="800" height="800" fill="url(#grid)" opacity="0.13"/>
+
+  <!-- ④ Star field — tiny dots at organic positions -->
+  <g fill="#e4ccff">
+    <circle cx="42"  cy="21"  r="1.2" opacity="0.55"/>
+    <circle cx="128" cy="64"  r="0.8" opacity="0.4"/>
+    <circle cx="208" cy="17"  r="1.5" opacity="0.65"/>
+    <circle cx="287" cy="83"  r="1.0" opacity="0.45"/>
+    <circle cx="368" cy="29"  r="0.8" opacity="0.35"/>
+    <circle cx="452" cy="70"  r="1.3" opacity="0.55"/>
+    <circle cx="528" cy="14"  r="0.9" opacity="0.45"/>
+    <circle cx="608" cy="53"  r="1.6" opacity="0.6"/>
+    <circle cx="693" cy="27"  r="1.0" opacity="0.4"/>
+    <circle cx="759" cy="88"  r="1.2" opacity="0.5"/>
+
+    <circle cx="19"  cy="138" r="1.0" opacity="0.4"/>
+    <circle cx="88"  cy="172" r="1.4" opacity="0.55"/>
+    <circle cx="178" cy="128" r="0.9" opacity="0.38"/>
+    <circle cx="263" cy="163" r="1.2" opacity="0.5"/>
+    <circle cx="343" cy="116" r="1.5" opacity="0.6"/>
+    <circle cx="418" cy="148" r="0.8" opacity="0.32"/>
+    <circle cx="508" cy="138" r="1.1" opacity="0.45"/>
+    <circle cx="588" cy="173" r="1.3" opacity="0.55"/>
+    <circle cx="669" cy="126" r="0.9" opacity="0.38"/>
+    <circle cx="748" cy="158" r="1.4" opacity="0.5"/>
+
+    <circle cx="53"  cy="248" r="1.3" opacity="0.5"/>
+    <circle cx="153" cy="278" r="0.9" opacity="0.38"/>
+    <circle cx="233" cy="238" r="1.5" opacity="0.6"/>
+    <circle cx="313" cy="268" r="1.0" opacity="0.42"/>
+    <circle cx="396" cy="243" r="1.2" opacity="0.5"/>
+    <circle cx="478" cy="278" r="0.8" opacity="0.32"/>
+    <circle cx="563" cy="253" r="1.4" opacity="0.55"/>
+    <circle cx="638" cy="288" r="1.1" opacity="0.45"/>
+    <circle cx="718" cy="246" r="1.5" opacity="0.6"/>
+    <circle cx="783" cy="268" r="0.9" opacity="0.38"/>
+
+    <circle cx="33"  cy="353" r="1.1" opacity="0.45"/>
+    <circle cx="108" cy="383" r="1.4" opacity="0.55"/>
+    <circle cx="193" cy="348" r="0.8" opacity="0.32"/>
+    <circle cx="276" cy="376" r="1.3" opacity="0.5"/>
+    <circle cx="356" cy="343" r="1.6" opacity="0.62"/>
+    <circle cx="436" cy="380" r="0.9" opacity="0.38"/>
+    <circle cx="520" cy="356" r="1.2" opacity="0.5"/>
+    <circle cx="600" cy="388" r="1.0" opacity="0.42"/>
+    <circle cx="683" cy="353" r="1.4" opacity="0.55"/>
+    <circle cx="766" cy="378" r="0.8" opacity="0.32"/>
+
+    <circle cx="63"  cy="458" r="1.5" opacity="0.6"/>
+    <circle cx="143" cy="488" r="1.0" opacity="0.42"/>
+    <circle cx="223" cy="453" r="1.2" opacity="0.5"/>
+    <circle cx="303" cy="486" r="0.9" opacity="0.38"/>
+    <circle cx="386" cy="460" r="1.3" opacity="0.55"/>
+    <circle cx="466" cy="492" r="1.5" opacity="0.6"/>
+    <circle cx="546" cy="468" r="0.8" opacity="0.32"/>
+    <circle cx="626" cy="490" r="1.1" opacity="0.45"/>
+    <circle cx="708" cy="466" r="1.4" opacity="0.55"/>
+    <circle cx="773" cy="488" r="1.0" opacity="0.42"/>
+
+    <circle cx="23"  cy="563" r="1.2" opacity="0.5"/>
+    <circle cx="103" cy="593" r="1.5" opacity="0.6"/>
+    <circle cx="186" cy="566" r="0.9" opacity="0.38"/>
+    <circle cx="266" cy="588" r="1.3" opacity="0.55"/>
+    <circle cx="350" cy="570" r="1.0" opacity="0.42"/>
+    <circle cx="430" cy="596" r="1.4" opacity="0.55"/>
+    <circle cx="513" cy="578" r="0.8" opacity="0.32"/>
+    <circle cx="593" cy="594" r="1.2" opacity="0.5"/>
+    <circle cx="676" cy="572" r="1.5" opacity="0.6"/>
+    <circle cx="756" cy="590" r="1.0" opacity="0.42"/>
+
+    <circle cx="46"  cy="666" r="1.1" opacity="0.45"/>
+    <circle cx="126" cy="696" r="0.8" opacity="0.32"/>
+    <circle cx="210" cy="670" r="1.4" opacity="0.55"/>
+    <circle cx="290" cy="693" r="1.2" opacity="0.5"/>
+    <circle cx="373" cy="676" r="0.9" opacity="0.38"/>
+    <circle cx="456" cy="700" r="1.3" opacity="0.55"/>
+    <circle cx="538" cy="680" r="1.5" opacity="0.6"/>
+    <circle cx="618" cy="698" r="1.0" opacity="0.42"/>
+    <circle cx="701" cy="674" r="1.2" opacity="0.5"/>
+    <circle cx="778" cy="693" r="1.4" opacity="0.55"/>
+
+    <circle cx="73"  cy="753" r="1.3" opacity="0.5"/>
+    <circle cx="160" cy="776" r="1.0" opacity="0.42"/>
+    <circle cx="246" cy="758" r="1.5" opacity="0.6"/>
+    <circle cx="328" cy="780" r="0.8" opacity="0.32"/>
+    <circle cx="413" cy="756" r="1.2" opacity="0.5"/>
+    <circle cx="496" cy="783" r="1.4" opacity="0.55"/>
+    <circle cx="576" cy="766" r="0.9" opacity="0.38"/>
+    <circle cx="658" cy="784" r="1.1" opacity="0.45"/>
+    <circle cx="740" cy="760" r="1.5" opacity="0.6"/>
+    <circle cx="793" cy="778" r="0.8" opacity="0.32"/>
+  </g>
+
+  <!-- ⑤ Scattered small diamond outlines -->
+  <g fill="none" stroke="#c088ff" stroke-width="0.7">
+    <polygon points="198,318 205,325 198,332 191,325" opacity="0.38"/>
+    <polygon points="578,418 587,427 578,436 569,427" opacity="0.32"/>
+    <polygon points="98,548 106,556 98,564 90,556"   opacity="0.42"/>
+    <polygon points="678,228 686,236 678,244 670,236" opacity="0.38"/>
+    <polygon points="348,648 358,658 348,668 338,658" opacity="0.32"/>
+    <polygon points="448,98  456,106 448,114 440,106" opacity="0.38"/>
+    <polygon points="738,488 748,498 738,508 728,498" opacity="0.28"/>
+    <polygon points="58,398  70,410 58,422 46,410"   opacity="0.32"/>
+    <polygon points="298,178 308,188 298,198 288,188" opacity="0.38"/>
+    <polygon points="618,718 628,728 618,738 608,728" opacity="0.28"/>
+    <polygon points="148,488 156,496 148,504 140,496" opacity="0.34"/>
+    <polygon points="518,278 528,288 518,298 508,288" opacity="0.36"/>
+  </g>
+
+  <!-- ⑥ Organic noise overlay -->
+  <rect width="800" height="800" fill="white" filter="url(#noise)"/>
+
+  <!-- ⑦ Vignette -->
+  <rect width="800" height="800" fill="url(#vig)"/>
+
+</svg>
