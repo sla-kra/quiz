@@ -1,0 +1,37 @@
+window.QUIZ_DATA = {
+  "title": "Quiz – przeliczanie miar wagi i długości 2",
+  "passScore": 80,
+  "questions": [
+    { "id":  1, "question": "6 kg = ? g",                  "options": ["600 g", "6000 g", "60 g", "60 000 g"],           "correct": 1 },
+    { "id":  2, "question": "9 dag = ? g",                 "options": ["9 g", "900 g", "90 g", "0,9 g"],                 "correct": 2 },
+    { "id":  3, "question": "5 t = ? kg",                  "options": ["500 kg", "50 kg", "5000 kg", "50 000 kg"],       "correct": 2 },
+    { "id":  4, "question": "800 g = ? dag",               "options": ["8 dag", "80 dag", "800 dag", "0,8 dag"],         "correct": 1 },
+    { "id":  5, "question": "4 kg = ? dag",                "options": ["40 dag", "4000 dag", "4 dag", "400 dag"],        "correct": 3 },
+    { "id":  6, "question": "9000 kg = ? t",               "options": ["90 t", "9 t", "0,9 t", "900 t"],                 "correct": 1 },
+    { "id":  7, "question": "1500 g = ? kg",               "options": ["1,5 kg", "15 kg", "0,15 kg", "150 kg"],          "correct": 0 },
+    { "id":  8, "question": "2 kg 30 g = ? g",             "options": ["2300 g", "230 g", "2030 g", "20 030 g"],         "correct": 2 },
+    { "id":  9, "question": "70 dag = ? g",                "options": ["7 g", "70 g", "7000 g", "700 g"],                "correct": 3 },
+    { "id": 10, "question": "0,2 t = ? kg",               "options": ["20 kg", "2 kg", "200 kg", "2000 kg"],            "correct": 2 },
+    { "id": 11, "question": "Która masa jest najmniejsza?", "options": ["1 kg", "90 dag", "850 g", "1 kg 200 g"],        "correct": 2 },
+    { "id": 12, "question": "5 kg 40 dag = ? dag",         "options": ["5040 dag", "54 dag", "504 dag", "540 dag"],      "correct": 3 },
+    { "id": 13, "question": "3200 kg = ?",                 "options": ["32 t", "3 t 200 kg", "3 t 20 kg", "320 t"],      "correct": 1 },
+    { "id": 14, "question": "750 g = ? kg",                "options": ["7,5 kg", "0,075 kg", "75 kg", "0,75 kg"],        "correct": 3 },
+    { "id": 15, "question": "6 dag + 40 g = ? g",          "options": ["46 g", "640 g", "100 g", "64 g"],                "correct": 2 },
+
+    { "id": 16, "question": "7 m = ? cm",                  "options": ["70 cm", "700 cm", "7000 cm", "77 cm"],           "correct": 1 },
+    { "id": 17, "question": "6 km = ? m",                  "options": ["600 m", "60 m", "6000 m", "60 000 m"],           "correct": 2 },
+    { "id": 18, "question": "90 mm = ? cm",                "options": ["9 cm", "90 cm", "0,9 cm", "900 cm"],             "correct": 0 },
+    { "id": 19, "question": "8 dm = ? cm",                 "options": ["8 cm", "800 cm", "0,8 cm", "80 cm"],             "correct": 3 },
+    { "id": 20, "question": "3 m = ? mm",                  "options": ["30 mm", "300 mm", "3000 mm", "30 000 mm"],       "correct": 2 },
+    { "id": 21, "question": "900 cm = ? m",                "options": ["90 m", "9 m", "0,9 m", "900 m"],                 "correct": 1 },
+    { "id": 22, "question": "12 000 m = ? km",             "options": ["120 km", "1,2 km", "12 km", "1200 km"],          "correct": 2 },
+    { "id": 23, "question": "48 cm = ? mm",                "options": ["4,8 mm", "48 mm", "4800 mm", "480 mm"],          "correct": 3 },
+    { "id": 24, "question": "3 m 7 cm = ? cm",             "options": ["37 cm", "307 cm", "370 cm", "3007 cm"],          "correct": 1 },
+    { "id": 25, "question": "2500 m = ? km",               "options": ["2,5 km", "25 km", "0,25 km", "250 km"],          "correct": 0 },
+    { "id": 26, "question": "6 dm = ? m",                  "options": ["6 m", "0,06 m", "60 m", "0,6 m"],                "correct": 3 },
+    { "id": 27, "question": "Która długość jest najkrótsza?", "options": ["1 m", "95 cm", "9 dm 8 cm", "1050 mm"],       "correct": 1 },
+    { "id": 28, "question": "5 km 40 m = ? m",             "options": ["5400 m", "540 m", "5040 m", "50 040 m"],         "correct": 2 },
+    { "id": 29, "question": "720 mm = ? dm",               "options": ["72 dm", "0,72 dm", "720 dm", "7,2 dm"],          "correct": 3 },
+    { "id": 30, "question": "2 km = ? cm",                 "options": ["2000 cm", "20 000 cm", "200 000 cm", "2 000 000 cm"], "correct": 2 }
+  ]
+};
